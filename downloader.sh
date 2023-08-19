@@ -1,12 +1,14 @@
 #!/bin/bash
 
 # Function to download a file
+
 download_file() {
    url="$1"
    file_name="$(echo "$url" | sed 's/.*\///')"
+   token="Your huggingface token"
    if [ ! -f "data/${file_name}" ]; then
         echo "Downloading ${file_name}..."
-        while ! curl -q --header "Cookie: token=fsxbwUDUcEHfDEcXbhDimvFoAtcOGmJOBNUxWtbnBSIjNyUhLWBkdFOCmyVrouCUOVtTxTcnfNoUsKlbgktWgyXdsJNevJmykEreJcVrmlLnGFfErVRImrdISbSDwdxD" "$url" -o "data/${file_name}" -L; do
+        while ! curl -q --header "Cookie: token=${token}" "$url" -o "data/${file_name}" -L; do
             sleep 1
         done
         echo "${file_name} Download completed"
