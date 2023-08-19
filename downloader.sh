@@ -12,7 +12,8 @@ download_file() {
         echo "${file_name} Download completed"
    fi
 }
-
+if [ ! -d "data" ]; then
+    mkdir data
 # Read the txt file line by line
 while read -r line; do
    # Check if the line is not empty
